@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>你好</title>
+
+	</head>
+	<body>
+		<from name="fuck" action="" method="post" >
+			<p style="color: red;font-size: larger;" 
+
+><b>&emsp;&emsp;&emsp;&emsp;&emsp;简单转换工具</b></p><br>
+			<table cellpadding="2" align="center">
+				<tr>
+					<td align="right">日期：</td>
+					<td><input type="date" id="riqi"></td>
+				</tr>
+				<tr>
+					<td align="right">结果：</td>
+					<td><p id="jieguo"></p></td>
+				</tr>
+			</table>
+			<hr>
+			 
+			<center><input type="submit" name="submit" id="submit" value="提
+
+交" onClick="fuck()"></center>
+			
+		</from>
+        <script>
+function fuck(){
+	var x = document.getElementById("riqi").value;
+	var date = new Date(x);
+	var ikun = String(Date.parse(date)/1000);
+	var qy = Number(ikun.substring(0,5));
+	var qyx = qy.toString(16);
+	document.getElementById("jieguo").innerHTML = qyx;
+	}
+</script>
+	</body>
+</html>
