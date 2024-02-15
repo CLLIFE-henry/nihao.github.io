@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
@@ -15,6 +15,10 @@
 					<td align="right">日期：</td>
 					<td><input type="date" id="riqi"></td>
 				</tr>
+                <tr>
+					<td align="right">序号：</td>
+					<td><input type="text" id="xuhao"></td>
+				</tr>
 				<tr>
 					<td align="right">结果：</td>
 					<td><p id="jieguo"></p></td>
@@ -27,14 +31,19 @@
 交" onClick="fuck()"></center>
 			
 		</from>
+        <script src="https://cdn.bootcdn.net/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
         <script>
+      
 function fuck(){
 	var x = document.getElementById("riqi").value;
+    var numb = Number(document.getElementById("xuhao").value);
 	var date = new Date(x);
 	var ikun = String(Date.parse(date)/1000);
-	var qy = Number(ikun.substring(0,5));
+	var qy = Number(ikun.substring(0,5)) * numb;
 	var qyx = qy.toString(16);
-	document.getElementById("jieguo").innerHTML = qyx;
+    var encodedData = CryptoJS.SHA256(qyx).toString();
+	document.getElementById("jieguo").innerHTML = encodedData.substring(4,12);
 	}
 </script>
 	</body>
