@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
@@ -34,17 +34,38 @@
         <script src="https://cdn.bootcdn.net/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 
         <script>
+
       
 function fuck(){
+
 	var x = document.getElementById("riqi").value;
-    var numb = Number(document.getElementById("xuhao").value);
+    var numb = document.getElementById("xuhao").value;
 	var date = new Date(x);
 	var ikun = String(Date.parse(date)/1000);
-	var qy = Number(ikun.substring(0,5)) * numb;
+	if (isNaN(numb) == false) {
+    	document.getElementById("jieguo").innerHTML = nihao(ikun,numb);
+	}else{
+    	var numList = numb.split("-",2);
+        var resList = [];
+        numList.sort(function(a,b){return a-b});
+        var start = Number(numList[0]);
+        var end = Number(numList[1]);
+        for (var k = start; k <= end; k++){
+        	resList.push(nihao(ikun,k));
+        }
+        var resStr = resList.join("<br>");
+        document.getElementById("jieguo").innerHTML = resStr;
+
+    }
+
+}
+
+function nihao(stamp,numb){
+	var qy = Number(stamp.substring(0,5)) * Number(numb);
 	var qyx = qy.toString(16);
     var encodedData = CryptoJS.SHA256(qyx).toString();
-	document.getElementById("jieguo").innerHTML = encodedData.substring(4,12);
-	}
+    return encodedData.substring(4,12);
+    }
 </script>
 	</body>
 </html>
